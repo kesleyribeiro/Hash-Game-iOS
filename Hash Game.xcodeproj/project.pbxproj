@@ -8,20 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		FAE1F01C1E8EB9E6001446BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1F01B1E8EB9E6001446BE /* AppDelegate.swift */; };
-		FAE1F01E1E8EB9E6001446BE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1F01D1E8EB9E6001446BE /* ViewController.swift */; };
+		FAE1F01E1E8EB9E6001446BE /* HashGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1F01D1E8EB9E6001446BE /* HashGameVC.swift */; };
 		FAE1F0211E8EB9E6001446BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAE1F01F1E8EB9E6001446BE /* Main.storyboard */; };
 		FAE1F0231E8EB9E6001446BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAE1F0221E8EB9E6001446BE /* Assets.xcassets */; };
 		FAE1F0261E8EB9E6001446BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAE1F0241E8EB9E6001446BE /* LaunchScreen.storyboard */; };
+		FAE1F02E1E8EF7C8001446BE /* ConfigGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1F02D1E8EF7C8001446BE /* ConfigGameVC.swift */; };
+		FAE8D1741E95CEF300322CCD /* navVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE8D1731E95CEF300322CCD /* navVC.swift */; };
+		FAE8D1771E96EAB100322CCD /* HashGame.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FAE8D1751E96EAB100322CCD /* HashGame.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		FAE1F0181E8EB9E6001446BE /* Hash Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hash Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAE1F01B1E8EB9E6001446BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FAE1F01D1E8EB9E6001446BE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FAE1F01D1E8EB9E6001446BE /* HashGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashGameVC.swift; sourceTree = "<group>"; };
 		FAE1F0201E8EB9E6001446BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FAE1F0221E8EB9E6001446BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAE1F0251E8EB9E6001446BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FAE1F0271E8EB9E6001446BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAE1F02D1E8EF7C8001446BE /* ConfigGameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigGameVC.swift; sourceTree = "<group>"; };
+		FAE8D1731E95CEF300322CCD /* navVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = navVC.swift; sourceTree = "<group>"; };
+		FAE8D1761E96EAB100322CCD /* HashGame.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HashGame.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,8 +61,11 @@
 			isa = PBXGroup;
 			children = (
 				FAE1F01B1E8EB9E6001446BE /* AppDelegate.swift */,
-				FAE1F01D1E8EB9E6001446BE /* ViewController.swift */,
+				FAE8D1731E95CEF300322CCD /* navVC.swift */,
+				FAE1F01D1E8EB9E6001446BE /* HashGameVC.swift */,
+				FAE1F02D1E8EF7C8001446BE /* ConfigGameVC.swift */,
 				FAE1F01F1E8EB9E6001446BE /* Main.storyboard */,
+				FAE8D1751E96EAB100322CCD /* HashGame.xcdatamodeld */,
 				FAE1F0221E8EB9E6001446BE /* Assets.xcassets */,
 				FAE1F0241E8EB9E6001446BE /* LaunchScreen.storyboard */,
 				FAE1F0271E8EB9E6001446BE /* Info.plist */,
@@ -137,8 +146,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAE1F01E1E8EB9E6001446BE /* ViewController.swift in Sources */,
+				FAE8D1741E95CEF300322CCD /* navVC.swift in Sources */,
+				FAE8D1771E96EAB100322CCD /* HashGame.xcdatamodeld in Sources */,
+				FAE1F01E1E8EB9E6001446BE /* HashGameVC.swift in Sources */,
 				FAE1F01C1E8EB9E6001446BE /* AppDelegate.swift in Sources */,
+				FAE1F02E1E8EF7C8001446BE /* ConfigGameVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,8 +314,23 @@
 				FAE1F02C1E8EB9E6001446BE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FAE8D1751E96EAB100322CCD /* HashGame.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FAE8D1761E96EAB100322CCD /* HashGame.xcdatamodel */,
+			);
+			currentVersion = FAE8D1761E96EAB100322CCD /* HashGame.xcdatamodel */;
+			name = HashGame.xcdatamodeld;
+			path = ../HashGame.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FAE1F0101E8EB9E6001446BE /* Project object */;
 }
