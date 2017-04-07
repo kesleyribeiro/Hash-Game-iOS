@@ -10,12 +10,9 @@ import UIKit
 import CoreData
 
 // Global vars
-var pointsPlayer1 = 0
-var pointsPlayer2 = 0
-var quantityGamesFinished = 0
+var game = Game(context: context)
 
 let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-let game = Game(context: context)
 
 class HashGameVC: UIViewController, UITextFieldDelegate {
 
@@ -23,7 +20,7 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
     var gameActive = true
     var gameState = [0, 0, 0, 0, 0, 0, 0, 0, 0]
     var cliksCount = 0
-    var firstGame = true
+    var firstGame = Bool()
     var playButton = UIButton() // Create new button
     let firstView = UIView() // Create new view
     
@@ -39,7 +36,8 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var pointsPlayer1Lbl: UILabel!
     @IBOutlet weak var pointsPlayer2Lbl: UILabel!
     @IBOutlet weak var qttGamesLbl: UILabel!
-    
+    @IBOutlet weak var settingsBtn: UIBarButtonItem!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -53,37 +51,63 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
         playAgainButton.layer.cornerRadius = playAgainButton.bounds.width / 12
         gameOverLabel.layer.masksToBounds = true
         gameOverLabel.layer.cornerRadius = 5
+        
+        game.firstGame = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
+        firstGame = game.firstGame
+        (UIApplication.shared.delegate as! AppDelegate).saveContext()
 
-        if firstGame == true {
+        print("1º? \(firstGame)")
             
-            viewFirstGame()
-    
-            // Hidden the label and button
-            playAgainButton.isHidden = true
-            gameOverLabel.isHidden = true
-        } else {
+        // It is not the first game
+        if firstGame == false {
+
+            settingsBtn.isEnabled = true
             
             firstGame = false
+            game.firstGame = false
 
-            // Hidden the label and button
+            // Hidden the view, button and label
+            firstView.isHidden = true
             playButton.isHidden = true
+
             playAgainButton.isHidden = true
             gameOverLabel.isHidden = true
-
+            
+            self.namePlayer1Lbl.text = game.namePlayer1
+            self.namePlayer2Lbl.text = game.namePlayer2
+            
+            self.pointsPlayer1Lbl.text = "\(game.pointsPlayer1)"
+            self.pointsPlayer2Lbl.text = "\(game.pointsPlayer2)"
+            self.qttGamesLbl.text = "\(game.qttGames)"
+            
+            (UIApplication.shared.delegate as! AppDelegate).saveContext()
+            
             // Call the function to play again
             playAgain()
+            
+        } // The first game
+        else {
+
+            firstGame = false
+            game.firstGame = false
+            
+            (UIApplication.shared.delegate as! AppDelegate).saveContext()
+            
+            // Hidden the label and button
+            playAgainButton.isHidden = true
+            gameOverLabel.isHidden = true
+            
+            viewFirstGame()
         }
-        // Save status of game in Core Data
-        game.firstGame = firstGame
-        (UIApplication.shared.delegate as! AppDelegate).saveContext()
     }
 
     func viewFirstGame() {
-        
+
         // Show the button
         playButton.isHidden = false
 
@@ -106,12 +130,6 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
     
     func tapped() {
 
-        firstGame = false
-
-        // Save status of game in Core Data
-        game.firstGame = firstGame
-        (UIApplication.shared.delegate as! AppDelegate).saveContext()
-        
         var namePlayer1TextField: UITextField!
         var namePlayer2TextField: UITextField!
 
@@ -120,6 +138,8 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
         let saveAction = UIAlertAction(title: "SAVE", style: .default, handler: {(action) -> Void in
 
             if namePlayer1TextField.text!.isEmpty || namePlayer2TextField.text!.isEmpty {
+
+                game.firstGame = false
 
                 game.namePlayer1 = "Player 1"
                 game.namePlayer2 = "Player 2"
@@ -138,9 +158,6 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
             }
             else {
 
-                self.playButton.isHidden = true
-                self.firstView.isHidden = true
-
                 game.namePlayer1 = namePlayer1TextField.text!
                 game.namePlayer2 = namePlayer2TextField.text!
 
@@ -155,12 +172,22 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
                 self.pointsPlayer2Lbl.text = "\(game.pointsPlayer2)"
                 self.qttGamesLbl.text = "\(game.qttGames)"
                 
+                // Save status of game in Core Data
+                game.firstGame = false
                 (UIApplication.shared.delegate as! AppDelegate).saveContext()
             }
+            
+            // Hidden the view and button
+            self.firstView.isHidden = true
+            self.playButton.isHidden = true
+
+            self.settingsBtn.isEnabled = true
         })
         
+        // Set the CANCEL button
         let cancelAction = UIAlertAction(title: "CANCEL", style: .default, handler: {(action) -> Void in })
         
+        // First text field - Name of the Player 1
         alertController.addTextField {(textField) -> Void in
             
             textField.text! = "Player 1"
@@ -170,6 +197,7 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
             namePlayer1TextField.attributedPlaceholder = NSAttributedString(string: "First name of the Player 1", attributes: [NSForegroundColorAttributeName: UIColor.red])
         }
 
+        // Second text field - Name of the Player 2
         alertController.addTextField { (textField : UITextField!) -> Void in
             
             textField.text! = "Player 2"
@@ -179,9 +207,11 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
             namePlayer2TextField.attributedPlaceholder = NSAttributedString(string: "First name of the Player 2", attributes: [NSForegroundColorAttributeName: UIColor.red])
         }
         
+        // Set the buttons to alert
         alertController.addAction(saveAction)
         alertController.addAction(cancelAction)
         
+        // Show the alert
         present(alertController, animated: true, completion: nil)
     }
     
@@ -212,13 +242,8 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
             button.setImage(nil, for: UIControlState())
         }
 
-        // Hidden the label and button
         gameOverLabel.isHidden = true
         playAgainButton.isHidden = true
-
-        // Change the position of the label and button 500px to left
-        gameOverLabel.center = CGPoint(x: gameOverLabel.center.x - 500, y: gameOverLabel.center.y)
-        playAgainButton.center = CGPoint(x: playAgainButton.center.x - 500, y: playAgainButton.center.y)
     }
     
     // When user seletec a position to play
@@ -253,7 +278,7 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
                 activePlayer = 1
             }
             sender.setImage(image, for: UIControlState())
-            
+        
             for combination in correctCombinations {
                 
                 if gameState[combination[0]] != 0 && gameState[combination[0]] == gameState[combination[1]] && gameState[combination[1]] == gameState[combination[2]] {
@@ -263,80 +288,107 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
                     if gameState[combination[0]] == 2 {
                         winnerText = "Player 2 winner"
                         
+                        // We not have game active in this moment
+                        gameActive = false
+
                         // Set 0 to cliksCount
                         cliksCount = 0
                         
                         // More one point to Player 2
-                        pointsPlayer2 += 1
-                        game.pointsPlayer2 = Int16(pointsPlayer2)
+                        game.pointsPlayer2 += 1
                         pointsPlayer2Lbl.text = "\(game.pointsPlayer2)"
+                        
+                        // More one to quantityGamesFinished
+                        game.qttGames += 1
+                        qttGamesLbl.text = "\(game.qttGames)"
                         
                         (UIApplication.shared.delegate as! AppDelegate).saveContext()
                     }
-                    
+
                     gameOverLabel.text = winnerText
+                    
+                    // More one point to Player 1
+                    game.pointsPlayer1 += 1
+                    pointsPlayer1Lbl.text = "\(game.pointsPlayer1)"
+                    
+                    // More one to quantityGamesFinished
+                    game.qttGames += 1
+                    qttGamesLbl.text = "\(game.qttGames)"
+
+                    (UIApplication.shared.delegate as! AppDelegate).saveContext()
                     
                     // Show the label and button
                     gameOverLabel.isHidden = false
                     playAgainButton.isHidden = false
-                    
+
                     // Animation in label and button
                     UIView.animate(withDuration: 0.5, animations: { () -> Void in
                         
                         // Change the position of the label and button 500px to right - standard position
                         self.gameOverLabel.center = CGPoint(x: self.gameOverLabel.center.x + 500, y: self.gameOverLabel.center.y)
                         self.playAgainButton.center = CGPoint(x: self.playAgainButton.center.x + 500, y: self.playAgainButton.center.y)
-                    })
-                    
+                        
+                    }) { (finished:Bool) in
+                        
+                        // Finished the firts animation
+                        if finished {
+                            
+                            // Second animation - zoom in
+                            UIView.animate(withDuration: 0.5, delay: 3, animations: {
+
+                                // Change the position of the label and button 500px to right - standard position
+                                self.gameOverLabel.center = CGPoint(x: self.gameOverLabel.center.x + 500, y: self.gameOverLabel.center.y)
+                            })
+                        }
+                    }
                     // We not have game active in this moment
                     gameActive = false
                     
                     // Set 0 to cliksCount
                     cliksCount = 0
-                    
-                    // More one point to Player 1
-                    pointsPlayer1 += 1
-                    game.pointsPlayer1 = Int16(pointsPlayer1)
-                    pointsPlayer1Lbl.text = "\(game.pointsPlayer1)"
-                    
-                    // More one to quantityGamesFinished
-                    quantityGamesFinished += 1
-                    game.qttGames = Int16(quantityGamesFinished)
-                    qttGamesLbl.text = "\(game.qttGames)"
-                    
-                    (UIApplication.shared.delegate as! AppDelegate).saveContext()
                 }
             }
-            
             // Without winner
             if cliksCount == 9 && gameActive {
-                
+            
                 // Set 0 to cliksCount
                 cliksCount = 0
                 
                 // We not have game active in this moment
                 gameActive = false
-                
+
                 // Show the label and button
                 gameOverLabel.isHidden = false
                 playAgainButton.isHidden = false
-                
+
                 gameOverLabel.text = "Without winner.\nPLAY AGAIN!"
 
+                // More one to quantityGamesFinished
+                game.qttGames += 1
+                qttGamesLbl.text = "\(game.qttGames)"
+
+                (UIApplication.shared.delegate as! AppDelegate).saveContext()
+                
                 // Animation in label and button
                 UIView.animate(withDuration: 0.5, animations: { () -> Void in
                     
                     // Change the position of the label and button 500px to right - standard position
                     self.gameOverLabel.center = CGPoint(x: self.gameOverLabel.center.x + 500, y: self.gameOverLabel.center.y)
                     self.playAgainButton.center = CGPoint(x: self.playAgainButton.center.x + 500, y: self.playAgainButton.center.y)
-                })
-                
-                // More one to quantityGamesFinished
-                quantityGamesFinished += 1
-                game.qttGames = Int16(quantityGamesFinished)
-                qttGamesLbl.text = "\(game.qttGames)"
-                
-                (UIApplication.shared.delegate as! AppDelegate).saveContext()
+                    
+                }) { (finished:Bool) in
+                    
+                    // Finished the firts animation
+                    if finished {
+                        
+                        // Second animation - zoom in
+                        UIView.animate(withDuration: 0.5, delay: 3, animations: {
+                            
+                            // Change the position of the label and button 500px to right - standard position
+                            self.gameOverLabel.center = CGPoint(x: self.gameOverLabel.center.x + 500, y: self.gameOverLabel.center.y)
+                        })
+                    }
+                }
             }
         }
     }

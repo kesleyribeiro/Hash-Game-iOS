@@ -12,7 +12,7 @@ import UIKit
 var namePlayer1 = String()
 var namePlayer2 = String()
 
-class ConfigGameVC: UIViewController, UITextFieldDelegate {
+class ConfigGameVC: UIViewController, UITextFieldDelegate {    
 
     @IBOutlet weak var namePlayer1Txt: UITextField!
     @IBOutlet weak var namePlayer2Txt: UITextField!
@@ -36,14 +36,16 @@ class ConfigGameVC: UIViewController, UITextFieldDelegate {
         // Delegate the textField
         namePlayer1Txt.delegate = self
         namePlayer2Txt.delegate = self
-        
+
         namePlayer1Txt.text! = game.namePlayer1!
         namePlayer2Txt.text! = game.namePlayer2!
         pointsPlayer1Lbl.text = "\(game.pointsPlayer1)"
         pointsPlayer2Lbl.text = "\(game.pointsPlayer2)"
-        qttGamesLbl.text = "\(quantityGamesFinished)"
-        namePlayer1Lbl.text = namePlayer1
-        namePlayer2Lbl.text = namePlayer2
+        qttGamesLbl.text = "\(game.qttGames)"
+        namePlayer1Lbl.text = game.namePlayer1
+        namePlayer2Lbl.text = game.namePlayer2
+
+        (UIApplication.shared.delegate as! AppDelegate).saveContext()
         
         // Add target to execute function in textfield
         namePlayer1Txt.addTarget(self, action: #selector(ConfigGameVC.textFieldDidChange(_:)), for: .editingChanged)
@@ -76,19 +78,12 @@ class ConfigGameVC: UIViewController, UITextFieldDelegate {
         // Remove the keyboard
         self.view.endEditing(false)
         
-        namePlayer1 = namePlayer1Txt.text!
-        namePlayer2 = namePlayer2Txt.text!
-        namePlayer1Lbl.text = namePlayer1
-        namePlayer2Lbl.text = namePlayer2
-
-        // Remove task modified in list tasks
-        //listTasks.remove(at: indexList)
+        game.namePlayer1 = namePlayer1Txt.text!
+        game.namePlayer2 = namePlayer2Txt.text!
+        namePlayer1Lbl.text = game.namePlayer1
+        namePlayer2Lbl.text = game.namePlayer2
         
-        // Add in listTasks an new task
-        //listTasks.append(task.text!)
-        
-        // Save the new data in user defaults
-        //UserDefaults.standard.set(listTasks, forKey: "listTasks")
+        (UIApplication.shared.delegate as! AppDelegate).saveContext()
     }
     
     // Hide keyboard when user touch in view
@@ -104,13 +99,14 @@ class ConfigGameVC: UIViewController, UITextFieldDelegate {
     
     @IBAction func redefineNumbersBtn(_ sender: Any) {
     
-        pointsPlayer1Lbl.text = "0"
-        pointsPlayer2Lbl.text = "0"
-        qttGamesLbl.text = "0"
-
-        pointsPlayer1 = 0
-        pointsPlayer2 = 0
-        quantityGamesFinished = 0
+        game.pointsPlayer1 = 0
+        game.pointsPlayer2 = 0
+        game.qttGames = 0
+        pointsPlayer1Lbl.text = "\(game.pointsPlayer1)"
+        pointsPlayer2Lbl.text = "\(game.pointsPlayer2)"
+        qttGamesLbl.text = "\(game.qttGames)"
+        
+        (UIApplication.shared.delegate as! AppDelegate).saveContext()
     }
     
     /*

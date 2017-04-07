@@ -294,7 +294,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="HASH GAME" id="s1M-sl-Cix">
-                        <barButtonItem key="rightBarButtonItem" tag="20" systemItem="compose" id="tiD-go-ih8">
+                        <barButtonItem key="rightBarButtonItem" tag="20" enabled="NO" systemItem="compose" id="tiD-go-ih8">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="eEv-SK-4Iw" kind="show" id="fcy-SP-qGM"/>
@@ -310,6 +310,7 @@
                         <outlet property="pointsPlayer1Lbl" destination="Kvl-4h-iIr" id="r5P-KP-gBU"/>
                         <outlet property="pointsPlayer2Lbl" destination="FgF-xO-c2W" id="jF9-8h-ehY"/>
                         <outlet property="qttGamesLbl" destination="kUR-dj-PYv" id="RZv-7e-5wK"/>
+                        <outlet property="settingsBtn" destination="tiD-go-ih8" id="xU0-VV-vI2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e5D-MD-pdi" sceneMemberID="firstResponder"/>
