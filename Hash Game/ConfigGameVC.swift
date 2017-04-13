@@ -8,10 +8,6 @@
 
 import UIKit
 
-// Global vars
-var namePlayer1 = String()
-var namePlayer2 = String()
-
 class ConfigGameVC: UIViewController, UITextFieldDelegate {    
 
     @IBOutlet weak var namePlayer1Txt: UITextField!
@@ -22,6 +18,7 @@ class ConfigGameVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var pointsPlayer1Lbl: UILabel!
     @IBOutlet weak var pointsPlayer2Lbl: UILabel!
     @IBOutlet weak var qttGamesLbl: UILabel!
+    @IBOutlet weak var qttStalemateLbl: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,11 +39,12 @@ class ConfigGameVC: UIViewController, UITextFieldDelegate {
         pointsPlayer1Lbl.text = "\(game.pointsPlayer1)"
         pointsPlayer2Lbl.text = "\(game.pointsPlayer2)"
         qttGamesLbl.text = "\(game.qttGames)"
+        qttStalemateLbl.text = "\(game.qttStalemate)"
         namePlayer1Lbl.text = game.namePlayer1
         namePlayer2Lbl.text = game.namePlayer2
 
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
-        
+
         // Add target to execute function in textfield
         namePlayer1Txt.addTarget(self, action: #selector(ConfigGameVC.textFieldDidChange(_:)), for: .editingChanged)
         namePlayer2Txt.addTarget(self, action: #selector(ConfigGameVC.textFieldDidChange(_:)), for: .editingChanged)
@@ -82,7 +80,7 @@ class ConfigGameVC: UIViewController, UITextFieldDelegate {
         game.namePlayer2 = namePlayer2Txt.text!
         namePlayer1Lbl.text = game.namePlayer1
         namePlayer2Lbl.text = game.namePlayer2
-        
+
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
     }
     
@@ -99,24 +97,21 @@ class ConfigGameVC: UIViewController, UITextFieldDelegate {
     
     @IBAction func redefineNumbersBtn(_ sender: Any) {
     
+        pointsPlayer1 = 0
+        pointsPlayer2 = 0
+        quantityGamesFinished = 0
+        quantityStalemate = 0
+
         game.pointsPlayer1 = 0
         game.pointsPlayer2 = 0
         game.qttGames = 0
+        game.qttStalemate = 0
+        
         pointsPlayer1Lbl.text = "\(game.pointsPlayer1)"
         pointsPlayer2Lbl.text = "\(game.pointsPlayer2)"
         qttGamesLbl.text = "\(game.qttGames)"
-        
+        qttStalemateLbl.text = "\(game.qttStalemate)"
+
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
