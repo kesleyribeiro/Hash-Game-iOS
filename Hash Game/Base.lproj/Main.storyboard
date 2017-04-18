@@ -342,7 +342,7 @@
                         <barButtonItem key="rightBarButtonItem" tag="20" image="Settings" id="PyP-kd-NV9">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="tZt-Yd-EW4" kind="show" animates="NO" id="06o-w0-iBZ">
+                                <segue destination="tZt-Yd-EW4" kind="show" id="06o-w0-iBZ">
                                     <nil key="action"/>
                                 </segue>
                             </connections>
@@ -601,7 +601,7 @@
                     <navigationItem key="navigationItem" title="SETTINGS" id="ooa-l5-0nA">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="itn-3S-MAH">
                             <connections>
-                                <segue destination="nh9-Tg-gIi" kind="show" animates="NO" id="I60-Wf-cRG"/>
+                                <segue destination="nh9-Tg-gIi" kind="show" id="I60-Wf-cRG"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
