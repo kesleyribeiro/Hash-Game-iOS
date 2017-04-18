@@ -3,7 +3,8 @@
 //  Hash Game
 //
 //  Created by Kesley Ribeiro on 31/Mar/17.
-//  Copyright © 2017 App ao Cubo. All rights reserved.
+//  Copyright © 2017 Kesley Ribeiro. All rights reserved.
+
 //
 
 import UIKit
@@ -25,7 +26,7 @@ class ConfigGameVC: UIViewController, UITextFieldDelegate {
 
         // Round edge of Save button
         saveBtn.layer.cornerRadius = saveBtn.bounds.width / 9
-        
+
         // Begin the button inactive
         saveBtn.isEnabled = false
         saveBtn.alpha = 0.3
@@ -52,19 +53,18 @@ class ConfigGameVC: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
     }
-    
+
     // If some information in textfiel was modified
     func textFieldDidChange(_ textField : UITextView) {
         
         // If textfield is empty - inactivate Save button
-        if namePlayer1Txt.text!.isEmpty {
-            
+        if namePlayer1Txt.text!.isEmpty || namePlayer2Txt.text!.isEmpty && namePlayer1Txt.text!.characters.count < 3 && namePlayer2Txt.text!.characters.count < 3 {
+
             saveBtn.isEnabled = false
             saveBtn.alpha = 0.3
             
-        } // If textfield was modified - activate Save button
+        }// If textfield was modified - activate Save button
         else {
             saveBtn.isEnabled = true
             saveBtn.alpha = 1
@@ -82,6 +82,7 @@ class ConfigGameVC: UIViewController, UITextFieldDelegate {
         namePlayer2Lbl.text = game.namePlayer2
 
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        print(game)
     }
     
     // Hide keyboard when user touch in view
@@ -96,7 +97,7 @@ class ConfigGameVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func redefineNumbersBtn(_ sender: Any) {
-    
+
         pointsPlayer1 = 0
         pointsPlayer2 = 0
         quantityGamesFinished = 0

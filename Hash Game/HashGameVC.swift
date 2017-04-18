@@ -3,20 +3,11 @@
 //  Hash Game
 //
 //  Created by Kesley Ribeiro on 31/Mar/17.
-//  Copyright © 2017 App ao Cubo. All rights reserved.
+//  Copyright © 2017 Kesley Ribeiro. All rights reserved.
 //
 
 import UIKit
 import CoreData
-
-// Global vars
-var pointsPlayer1 = 0
-var pointsPlayer2 = 0
-var quantityGamesFinished = 0
-var quantityStalemate = 0
-
-let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-let game = Game(context: context)
 
 class HashGameVC: UIViewController, UITextFieldDelegate {
 
@@ -24,37 +15,35 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
     var gameActive = true
     var gameState = [0, 0, 0, 0, 0, 0, 0, 0, 0]
     var cliksCount = 0
-    var firstGame = Bool()
-    var playButton = UIButton() // Create new button
-    let firstView = UIView() // Create new view
     var imageButtonPlayer1 = UIImage()
     var imageButtonPlayer2 = UIImage()
-    
+    var games : [Game] = []
+
     // Combinations possible to winner game
     let correctCombinations = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
     
     // List of images in array 
     let arrayOfImages : NSArray = [UIImage(named: "2 star.png")!,
-                                 UIImage(named: "Arrows.png")!,
-                                 UIImage(named: "Battery.png")!,
-                                 UIImage(named: "Heart.png")!,
-                                 UIImage(named: "Oval.png")!,
-                                 UIImage(named: "Polygon.png")!,
-                                 UIImage(named: "Rectangle edited.png")!,
-                                 UIImage(named: "Star.png")!,
-                                 UIImage(named: "Triangle.png")!,
-                                 UIImage(named: "X.png")!]
+                                    UIImage(named: "Arrows.png")!,
+                                    UIImage(named: "Battery.png")!,
+                                    UIImage(named: "Heart.png")!,
+                                    UIImage(named: "Oval.png")!,
+                                    UIImage(named: "Polygon.png")!,
+                                    UIImage(named: "Rectangle edited.png")!,
+                                    UIImage(named: "Star.png")!,
+                                    UIImage(named: "Triangle.png")!,
+                                    UIImage(named: "X.png")!]
     
     let arrayTrayBase : NSArray = [UIImage(named: "base-1.png")!,
-                            UIImage(named: "base-2.png")!,
-                            UIImage(named: "base-3.png")!,
-                            UIImage(named: "base-4.png")!,
-                            UIImage(named: "base-5.png")!,
-                            UIImage(named: "base-6.png")!,
-                            UIImage(named: "base-7.png")!,
-                            UIImage(named: "base-8.png")!,
-                            UIImage(named: "base-9.png")!,
-                            UIImage(named: "base-10.png")!]
+                                    UIImage(named: "base-2.png")!,
+                                    UIImage(named: "base-3.png")!,
+                                    UIImage(named: "base-4.png")!,
+                                    UIImage(named: "base-5.png")!,
+                                    UIImage(named: "base-6.png")!,
+                                    UIImage(named: "base-7.png")!,
+                                    UIImage(named: "base-8.png")!,
+                                    UIImage(named: "base-9.png")!,
+                                    UIImage(named: "base-10.png")!]
 
     // Objects of view
     @IBOutlet weak var trayBaseImg: UIImageView!
@@ -68,7 +57,6 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var qttGamesLbl: UILabel!
     @IBOutlet weak var qttStalemateLbl: UILabel!
     @IBOutlet weak var refreshBtn: UIBarButtonItem!
-    @IBOutlet weak var settingsBtn: UIBarButtonItem!
     @IBOutlet weak var statusPlayer1Img: UIImageView!
     @IBOutlet weak var statusPlayer2Img: UIImageView!
     @IBOutlet weak var partPlayer1Img: UIImageView!
@@ -83,14 +71,46 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
         navigationItem.backBarButtonItem = backItem
 
         // Round edge of Play again button
-        //playButton.layer.cornerRadius = playButton.bounds.width / 12
         playAgainButton.layer.cornerRadius = playAgainButton.bounds.width / 12
         gameOverLabel.layer.masksToBounds = true
         gameOverLabel.layer.cornerRadius = 5
-        
-        game.firstGame = true
     }
-    
+
+    func getGames() {
+        
+        context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        do {
+            games = try context.fetch(Game.fetchRequest()) as! [Game]
+            
+            if game.namePlayer1 != nil || game.namePlayer2 != nil {
+                self.namePlayer1Lbl.text = game.namePlayer1
+                self.namePlayer2Lbl.text = game.namePlayer2
+                
+                self.pointsPlayer1Lbl.text = "\(game.pointsPlayer1)"
+                self.pointsPlayer2Lbl.text = "\(game.pointsPlayer2)"
+                self.qttGamesLbl.text = "\(game.qttGames)"
+                self.qttStalemateLbl.text = "\(game.qttStalemate)"
+                (UIApplication.shared.delegate as! AppDelegate).saveContext()
+                
+            } else {
+
+                game.namePlayer1 = "Player 1"
+                game.namePlayer2 = "Player 2"
+                self.namePlayer1Lbl.text = game.namePlayer1
+                self.namePlayer2Lbl.text = game.namePlayer2
+                self.pointsPlayer1Lbl.text = "\(game.pointsPlayer1)"
+                self.pointsPlayer2Lbl.text = "\(game.pointsPlayer2)"
+                self.qttGamesLbl.text = "\(game.qttGames)"
+                self.qttStalemateLbl.text = "\(game.qttStalemate)"
+                (UIApplication.shared.delegate as! AppDelegate).saveContext()
+            }
+            print("\nDados do Game: \(games)\n")
+        } catch {
+            print("\nWe have an error!")
+        }
+    }
+
     @IBAction func refreshDeleteGameButton(_ sender: Any) {
     
         // Create alert and define parameters title and message
@@ -112,175 +132,18 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        randomLayout()
-        
+        getGames()
+
+        playAgainButton.isHidden = true
+        gameOverLabel.isHidden = true
+
         statusPlayer1Img.image = UIImage(named: "active.png")
         statusPlayer2Img.image = UIImage(named: "disactivate.png")
-
-        firstGame = game.firstGame
-        (UIApplication.shared.delegate as! AppDelegate).saveContext()
-
-        print("1º? \(firstGame)")
-    
-        // It is not the first game
-        if firstGame == false {
-
-            settingsBtn.isEnabled = true
-            refreshBtn.isEnabled = true
-            
-            firstGame = false
-            game.firstGame = false
-
-            // Hidden the view, button and label
-            firstView.isHidden = true
-            playButton.isHidden = true
-
-            playAgainButton.isHidden = true
-            gameOverLabel.isHidden = true
-            
-            self.namePlayer1Lbl.text = game.namePlayer1
-            self.namePlayer2Lbl.text = game.namePlayer2
-            
-            self.pointsPlayer1Lbl.text = "\(game.pointsPlayer1)"
-            self.pointsPlayer2Lbl.text = "\(game.pointsPlayer2)"
-            self.qttGamesLbl.text = "\(game.qttGames)"
-            self.qttStalemateLbl.text = "\(game.qttStalemate)"
-            
-            (UIApplication.shared.delegate as! AppDelegate).saveContext()
-            
-            // Call the function to play again
-            playAgain()
-            
-        } // The first game
-        else {
-
-            firstGame = false
-            game.firstGame = false
-
-            (UIApplication.shared.delegate as! AppDelegate).saveContext()
-            
-            // Hidden the label and button
-            playAgainButton.isHidden = true
-            gameOverLabel.isHidden = true
-            
-            viewFirstGame()
-        }
-    }
-
-    func viewFirstGame() {
-
-        // Show the button
-        playButton.isHidden = false
-
-        firstView.backgroundColor = .black // View color
-        firstView.frame.size.width = 320 // Width view
-        firstView.frame.size.height = 478 // Height view
-        firstView.center.y = view.center.y - 78 // Position of view
-        firstView.alpha = 0.6 // Opacity of view
-        self.view.addSubview(firstView) // Add view to view controller
-
-        playButton = UIButton(frame: CGRect(x: 20, y: firstView.center.y - 76, width: 278, height: 48))
-        playButton.setTitle("PLAY", for: .normal) // Set title button
-        playButton.setTitleColor(.white, for: .normal) // Title color
-        playButton.backgroundColor = color2 // Button color
-        playButton.layer.cornerRadius = playButton.bounds.width / 12 // Bounds button
         
-        playButton.addTarget(self, action: #selector(HashGameVC.tapped), for: .touchUpInside)
-        self.view.addSubview(playButton) // Add button to viewFirstGame
-    }
-    
-    func tapped() {
+        // Call the function to play again
+        playAgain()
 
-        var namePlayer1TextField: UITextField!
-        var namePlayer2TextField: UITextField!
-
-        let alertController = UIAlertController(title: "Names of the Players", message: "", preferredStyle: .alert)
-
-        let saveAction = UIAlertAction(title: "SAVE", style: .default, handler: {(action) -> Void in
-
-            if namePlayer1TextField.text!.isEmpty || namePlayer2TextField.text!.isEmpty {
-
-                self.firstGame = false
-                game.firstGame = false
-
-                game.namePlayer1 = "Player 1"
-                game.namePlayer2 = "Player 2"
-                self.namePlayer1Lbl.text = game.namePlayer1
-                self.namePlayer2Lbl.text = game.namePlayer2
-
-                game.pointsPlayer1 = 0
-                game.pointsPlayer2 = 0
-                game.qttGames = 0
-                game.qttStalemate = 0
-
-                self.pointsPlayer1Lbl.text = "\(game.pointsPlayer1)"
-                self.pointsPlayer2Lbl.text = "\(game.pointsPlayer2)"
-                self.qttGamesLbl.text = "\(game.qttGames)"
-                self.qttStalemateLbl.text = "\(game.qttStalemate)"
-                
-                (UIApplication.shared.delegate as! AppDelegate).saveContext()
-            }
-            else {
-
-                game.namePlayer1 = namePlayer1TextField.text!
-                game.namePlayer2 = namePlayer2TextField.text!
-
-                self.namePlayer1Lbl.text = game.namePlayer1
-                self.namePlayer2Lbl.text = game.namePlayer2
-
-                game.pointsPlayer1 = 0
-                game.pointsPlayer2 = 0
-                game.qttGames = 0
-                game.qttStalemate = 0
-
-                self.pointsPlayer1Lbl.text = "\(game.pointsPlayer1)"
-                self.pointsPlayer2Lbl.text = "\(game.pointsPlayer2)"
-                self.qttGamesLbl.text = "\(game.qttGames)"
-                self.qttStalemateLbl.text = "\(game.qttStalemate)"
-                
-                // Save status of game in Core Data
-                self.firstGame = false
-                game.firstGame = false
-                (UIApplication.shared.delegate as! AppDelegate).saveContext()
-            }
-
-            // Hidden the view and button
-            self.firstView.isHidden = true
-            self.playButton.isHidden = true
-
-            self.settingsBtn.isEnabled = true
-            self.refreshBtn.isEnabled = true
-        })
-        
-        // Set the CANCEL button
-        let cancelAction = UIAlertAction(title: "CANCEL", style: .default, handler: {(action) -> Void in })
-        
-        // First text field - Name of the Player 1
-        alertController.addTextField {(textField) -> Void in
-            
-            textField.text! = "Player 1"
-            namePlayer1TextField = textField
-            
-            // Set red color to text in placeholder
-            namePlayer1TextField.attributedPlaceholder = NSAttributedString(string: "First name of the Player 1", attributes: [NSForegroundColorAttributeName: UIColor.red])
-        }
-
-        // Second text field - Name of the Player 2
-        alertController.addTextField { (textField : UITextField!) -> Void in
-            
-            textField.text! = "Player 2"
-            namePlayer2TextField = textField
-            
-            // Set red color to text in placeholder
-            namePlayer2TextField.attributedPlaceholder = NSAttributedString(string: "First name of the Player 2", attributes: [NSForegroundColorAttributeName: UIColor.red])
-        }
-        
-        // Set the buttons to alert
-        alertController.addAction(saveAction)
-        alertController.addAction(cancelAction)
-        
-        // Show the alert
-        present(alertController, animated: true, completion: nil)
+        randomLayout()
     }
     
     @IBAction func playAgainPressed(_ sender: AnyObject) {
@@ -391,6 +254,8 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
                         pointsPlayer1 += 1
                         game.pointsPlayer1 = Int16(pointsPlayer1)
                         pointsPlayer1Lbl.text = "\(game.pointsPlayer1)"
+                        
+                        (UIApplication.shared.delegate as! AppDelegate).saveContext()
                     }
 
                     self.refreshBtn.isEnabled = false
@@ -491,7 +356,8 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
                         })
                     }
                 }
-            }            
+                (UIApplication.shared.delegate as! AppDelegate).saveContext()
+            }
         }
     }
     

@@ -3,7 +3,7 @@
 //  List of tasks
 //
 //  Created by Kesley Ribeiro on 30/Mar/17.
-//  Copyright © 2017 App ao Cubo. All rights reserved.
+//  Copyright © 2017 Kesley Ribeiro. All rights reserved.
 //
 
 import UIKit

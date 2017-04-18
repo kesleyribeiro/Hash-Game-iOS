@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0820"
+   LastUpgradeVersion = "0830"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FAE1F0171E8EB9E6001446BE"
+               BlueprintIdentifier = "FA68A9781EA56E4E00F8FC6D"
                BuildableName = "Hash Game.app"
                BlueprintName = "Hash Game"
                ReferencedContainer = "container:Hash Game.xcodeproj">
@@ -32,7 +32,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FAE1F0171E8EB9E6001446BE"
+            BlueprintIdentifier = "FA68A9781EA56E4E00F8FC6D"
             BuildableName = "Hash Game.app"
             BlueprintName = "Hash Game"
             ReferencedContainer = "container:Hash Game.xcodeproj">
@@ -55,7 +55,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FAE1F0171E8EB9E6001446BE"
+            BlueprintIdentifier = "FA68A9781EA56E4E00F8FC6D"
             BuildableName = "Hash Game.app"
             BlueprintName = "Hash Game"
             ReferencedContainer = "container:Hash Game.xcodeproj">
@@ -74,7 +74,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FAE1F0171E8EB9E6001446BE"
+            BlueprintIdentifier = "FA68A9781EA56E4E00F8FC6D"
             BuildableName = "Hash Game.app"
             BlueprintName = "Hash Game"
             ReferencedContainer = "container:Hash Game.xcodeproj">
