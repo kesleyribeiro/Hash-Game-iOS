@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA1AE9881EA5CB1600BC14C3 /* ContactsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1AE9871EA5CB1600BC14C3 /* ContactsVC.swift */; };
 		FA68A97D1EA56E4E00F8FC6D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA68A97C1EA56E4E00F8FC6D /* AppDelegate.swift */; };
 		FA68A9821EA56E4E00F8FC6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA68A9801EA56E4E00F8FC6D /* Main.storyboard */; };
 		FA68A9851EA56E4E00F8FC6D /* Hash_Game.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA68A9831EA56E4E00F8FC6D /* Hash_Game.xcdatamodeld */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA1AE9871EA5CB1600BC14C3 /* ContactsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsVC.swift; sourceTree = "<group>"; };
 		FA68A9791EA56E4E00F8FC6D /* Hash Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hash Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA68A97C1EA56E4E00F8FC6D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA68A9811EA56E4E00F8FC6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 				FA68A9931EA56FDC00F8FC6D /* navVC.swift */,
 				FA68A9921EA56FDC00F8FC6D /* HashGameVC.swift */,
 				FA68A9911EA56FDC00F8FC6D /* ConfigGameVC.swift */,
+				FA1AE9871EA5CB1600BC14C3 /* ContactsVC.swift */,
 				FA68A9801EA56E4E00F8FC6D /* Main.storyboard */,
 				FA68A9881EA56E4E00F8FC6D /* LaunchScreen.storyboard */,
 				FA68A9861EA56E4E00F8FC6D /* Assets.xcassets */,
@@ -151,6 +154,7 @@
 				FA68A9941EA56FDC00F8FC6D /* ConfigGameVC.swift in Sources */,
 				FA68A9961EA56FDC00F8FC6D /* navVC.swift in Sources */,
 				FA68A9851EA56E4E00F8FC6D /* Hash_Game.xcdatamodeld in Sources */,
+				FA1AE9881EA5CB1600BC14C3 /* ContactsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +320,7 @@
 				FA68A9901EA56E4E00F8FC6D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

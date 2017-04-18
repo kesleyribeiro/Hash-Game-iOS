@@ -9,7 +9,7 @@
 
 import UIKit
 
-class ConfigGameVC: UIViewController, UITextFieldDelegate {    
+class ConfigGameVC: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var namePlayer1Txt: UITextField!
     @IBOutlet weak var namePlayer2Txt: UITextField!
@@ -23,6 +23,11 @@ class ConfigGameVC: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Without text in back button item
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        navigationItem.backBarButtonItem = backItem
 
         // Round edge of Save button
         saveBtn.layer.cornerRadius = saveBtn.bounds.width / 9
