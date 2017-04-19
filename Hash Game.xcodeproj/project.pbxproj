@@ -282,7 +282,7 @@
 				DEVELOPMENT_TEAM = 243DK6F34T;
 				INFOPLIST_FILE = "Hash Game/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "br.com.kesleyribeiro.Hash-Game";
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.kesleyribeiro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -295,7 +295,7 @@
 				DEVELOPMENT_TEAM = 243DK6F34T;
 				INFOPLIST_FILE = "Hash Game/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "br.com.kesleyribeiro.Hash-Game";
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.kesleyribeiro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

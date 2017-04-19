@@ -78,9 +78,13 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
         
         // If exists names
         if (UserDefaults.standard.value(forKey: "namePlayer1") != nil) &&
-           (UserDefaults.standard.value(forKey: "namePlayer2") != nil) {
+            (UserDefaults.standard.value(forKey: "namePlayer2") != nil) &&
+            (UserDefaults.standard.value(forKey: "pointsPlayer1") != nil) &&
+            (UserDefaults.standard.value(forKey: "pointsPlayer2") != nil) &&
+            (UserDefaults.standard.value(forKey: "quantityGamesFinished") != nil) &&
+            (UserDefaults.standard.value(forKey: "quantityStalemate") != nil) {
 
-            // Carregar informações do usuário em var usuario
+            // Loading information
             namePlayer1 = UserDefaults.standard.value(forKey: "namePlayer1") as! String
             namePlayer2 = UserDefaults.standard.value(forKey: "namePlayer2") as! String
             pointsPlayer1 = UserDefaults.standard.value(forKey: "pointsPlayer1") as! Int
@@ -88,6 +92,7 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
             quantityGamesFinished = UserDefaults.standard.value(forKey: "quantityGamesFinished") as! Int
             quantityStalemate = UserDefaults.standard.value(forKey: "quantityStalemate") as! Int
 
+            // Show data in UI
             namePlayer1Lbl.text = namePlayer1
             namePlayer2Lbl.text = namePlayer2
             pointsPlayer1Lbl.text = "\(pointsPlayer1)"
@@ -97,11 +102,23 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
             
         } // No exists names
         else {
+            // Define the values to vars
             namePlayer1 = "Player 1"
             namePlayer2 = "Player 2"
+            pointsPlayer1 = 0
+            pointsPlayer2 = 0
+            quantityGamesFinished = 0
+            quantityStalemate = 0
+
+            // Save the data
             UserDefaults.standard.set(namePlayer1, forKey: "namePlayer1")
             UserDefaults.standard.set(namePlayer2, forKey: "namePlayer2")
+            UserDefaults.standard.set(pointsPlayer1, forKey: "pointsPlayer1")
+            UserDefaults.standard.set(pointsPlayer2, forKey: "pointsPlayer2")
+            UserDefaults.standard.set(quantityGamesFinished, forKey: "quantityGamesFinished")
+            UserDefaults.standard.set(quantityStalemate, forKey: "quantityStalemate")
 
+            // Show data in UI
             namePlayer1Lbl.text = namePlayer1
             namePlayer2Lbl.text = namePlayer2
             pointsPlayer1Lbl.text = "\(pointsPlayer1)"
@@ -184,8 +201,8 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
         playAgainButton.isHidden = true
         
         // Change the position of the label and button 500px to left
-        gameOverLabel.center = CGPoint(x: gameOverLabel.center.x - 500, y: gameOverLabel.center.y)
-        playAgainButton.center = CGPoint(x: playAgainButton.center.x - 500, y: playAgainButton.center.y)
+        gameOverLabel.center = CGPoint(x: gameOverLabel.center.x - 1000, y: gameOverLabel.center.y)
+        playAgainButton.center = CGPoint(x: playAgainButton.center.x - 1000, y: playAgainButton.center.y)
     }
     
     // When user seletec a position to play
@@ -279,8 +296,8 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
                     UIView.animate(withDuration: 0.5, animations: { () -> Void in
                         
                         // Change the position of the label and button 500px to right - standard position
-                        self.gameOverLabel.center = CGPoint(x: self.gameOverLabel.center.x + 500, y: self.gameOverLabel.center.y)
-                        self.playAgainButton.center = CGPoint(x: self.playAgainButton.center.x + 500, y: self.playAgainButton.center.y)
+                        self.gameOverLabel.center = CGPoint(x: self.gameOverLabel.center.x + 1000, y: self.gameOverLabel.center.y)
+                        self.playAgainButton.center = CGPoint(x: self.playAgainButton.center.x + 1000, y: self.playAgainButton.center.y)
 
                     }) {(finished:Bool) in
 
@@ -291,7 +308,7 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
                             UIView.animate(withDuration: 0.5, delay: 3, animations: {
 
                                 // Change the position of the label and button 500px to right - standard position
-                                self.gameOverLabel.center = CGPoint(x: self.gameOverLabel.center.x + 500, y: self.gameOverLabel.center.y)
+                                self.gameOverLabel.center = CGPoint(x: self.gameOverLabel.center.x + 1000, y: self.gameOverLabel.center.y)
                             })
                         }
                     }
@@ -331,8 +348,8 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
                 UIView.animate(withDuration: 0.5, animations: { () -> Void in
                     
                     // Change the position of the label and button 500px to right - standard position
-                    self.gameOverLabel.center = CGPoint(x: self.gameOverLabel.center.x + 500, y: self.gameOverLabel.center.y)
-                    self.playAgainButton.center = CGPoint(x: self.playAgainButton.center.x + 500, y: self.playAgainButton.center.y)
+                    self.gameOverLabel.center = CGPoint(x: self.gameOverLabel.center.x + 1000, y: self.gameOverLabel.center.y)
+                    self.playAgainButton.center = CGPoint(x: self.playAgainButton.center.x + 1000, y: self.playAgainButton.center.y)
                     
                 }) { (finished:Bool) in
                     
@@ -343,7 +360,7 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
                         UIView.animate(withDuration: 0.5, delay: 3, animations: {
                             
                             // Change the position of the label and button 500px to right - standard position
-                            self.gameOverLabel.center = CGPoint(x: self.gameOverLabel.center.x + 500, y: self.gameOverLabel.center.y)
+                            self.gameOverLabel.center = CGPoint(x: self.gameOverLabel.center.x + 1000, y: self.gameOverLabel.center.y)
                         })
                     }
                 }
