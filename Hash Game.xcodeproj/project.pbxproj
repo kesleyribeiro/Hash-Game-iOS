@@ -108,7 +108,7 @@
 				TargetAttributes = {
 					FA68A9781EA56E4E00F8FC6D = {
 						CreatedOnToolsVersion = 8.3.1;
-						DevelopmentTeam = 243DK6F34T;
+						DevelopmentTeam = 664GFJ5PP3;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -279,7 +279,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 243DK6F34T;
+				DEVELOPMENT_TEAM = 664GFJ5PP3;
 				INFOPLIST_FILE = "Hash Game/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.kesleyribeiro;
@@ -292,7 +292,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 243DK6F34T;
+				DEVELOPMENT_TEAM = 664GFJ5PP3;
 				INFOPLIST_FILE = "Hash Game/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.kesleyribeiro;
