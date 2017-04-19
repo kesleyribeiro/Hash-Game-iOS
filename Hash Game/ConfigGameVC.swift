@@ -40,16 +40,14 @@ class ConfigGameVC: UIViewController, UITextFieldDelegate {
         namePlayer1Txt.delegate = self
         namePlayer2Txt.delegate = self
 
-        namePlayer1Txt.text! = game.namePlayer1!
-        namePlayer2Txt.text! = game.namePlayer2!
-        pointsPlayer1Lbl.text = "\(game.pointsPlayer1)"
-        pointsPlayer2Lbl.text = "\(game.pointsPlayer2)"
-        qttGamesLbl.text = "\(game.qttGames)"
-        qttStalemateLbl.text = "\(game.qttStalemate)"
-        namePlayer1Lbl.text = game.namePlayer1
-        namePlayer2Lbl.text = game.namePlayer2
-
-        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        namePlayer1Txt.text! = namePlayer1
+        namePlayer2Txt.text! = namePlayer2
+        namePlayer1Lbl.text = namePlayer1
+        namePlayer2Lbl.text = namePlayer2
+        pointsPlayer1Lbl.text = "\(pointsPlayer1)"
+        pointsPlayer2Lbl.text = "\(pointsPlayer2)"
+        qttGamesLbl.text = "\(quantityGamesFinished)"
+        qttStalemateLbl.text = "\(quantityStalemate)"
 
         // Add target to execute function in textfield
         namePlayer1Txt.addTarget(self, action: #selector(ConfigGameVC.textFieldDidChange(_:)), for: .editingChanged)
@@ -81,13 +79,19 @@ class ConfigGameVC: UIViewController, UITextFieldDelegate {
         // Remove the keyboard
         self.view.endEditing(false)
         
-        game.namePlayer1 = namePlayer1Txt.text!
-        game.namePlayer2 = namePlayer2Txt.text!
-        namePlayer1Lbl.text = game.namePlayer1
-        namePlayer2Lbl.text = game.namePlayer2
+        // Add the names
+        namePlayer1.removeAll()
+        namePlayer2.removeAll()
+        namePlayer1.append(namePlayer1Txt.text!)
+        namePlayer2.append(namePlayer2Txt.text!)
 
-        (UIApplication.shared.delegate as! AppDelegate).saveContext()
-        print(game)
+        // Save the data in user defaults
+        UserDefaults.standard.set(namePlayer1, forKey: "namePlayer1")
+        UserDefaults.standard.set(namePlayer2, forKey: "namePlayer2")
+
+        // Show the names in labels
+        namePlayer1Lbl.text = namePlayer1
+        namePlayer2Lbl.text = namePlayer2
     }
     
     // Hide keyboard when user touch in view
@@ -108,16 +112,15 @@ class ConfigGameVC: UIViewController, UITextFieldDelegate {
         quantityGamesFinished = 0
         quantityStalemate = 0
 
-        game.pointsPlayer1 = 0
-        game.pointsPlayer2 = 0
-        game.qttGames = 0
-        game.qttStalemate = 0
-        
-        pointsPlayer1Lbl.text = "\(game.pointsPlayer1)"
-        pointsPlayer2Lbl.text = "\(game.pointsPlayer2)"
-        qttGamesLbl.text = "\(game.qttGames)"
-        qttStalemateLbl.text = "\(game.qttStalemate)"
+        // Save the data in user defaults
+        UserDefaults.standard.set(pointsPlayer1, forKey: "pointsPlayer1")
+        UserDefaults.standard.set(pointsPlayer2, forKey: "pointsPlayer2")
+        UserDefaults.standard.set(quantityGamesFinished, forKey: "quantityGamesFinished")
+        UserDefaults.standard.set(quantityStalemate, forKey: "quantityStalemate")
 
-        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        pointsPlayer1Lbl.text = "\(pointsPlayer1)"
+        pointsPlayer2Lbl.text = "\(pointsPlayer2)"
+        qttGamesLbl.text = "\(quantityGamesFinished)"
+        qttStalemateLbl.text = "\(quantityStalemate)"
     }
 }

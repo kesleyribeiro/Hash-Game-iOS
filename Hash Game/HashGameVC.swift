@@ -17,7 +17,7 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
     var cliksCount = 0
     var imageButtonPlayer1 = UIImage()
     var imageButtonPlayer2 = UIImage()
-    var games : [Game] = []
+    //var games : [Game] = []
 
     // Combinations possible to winner game
     let correctCombinations = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
@@ -78,36 +78,37 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
 
     func getGames() {
         
-        context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        
-        do {
-            games = try context.fetch(Game.fetchRequest()) as! [Game]
-            
-            if game.namePlayer1 != nil || game.namePlayer2 != nil {
-                self.namePlayer1Lbl.text = game.namePlayer1
-                self.namePlayer2Lbl.text = game.namePlayer2
-                
-                self.pointsPlayer1Lbl.text = "\(game.pointsPlayer1)"
-                self.pointsPlayer2Lbl.text = "\(game.pointsPlayer2)"
-                self.qttGamesLbl.text = "\(game.qttGames)"
-                self.qttStalemateLbl.text = "\(game.qttStalemate)"
-                (UIApplication.shared.delegate as! AppDelegate).saveContext()
-                
-            } else {
+        // Se existe usuário logado/registrado, mas logado
+        if (UserDefaults.standard.value(forKey: "namePlayer1") != nil) &&
+           (UserDefaults.standard.value(forKey: "namePlayer2") != nil) {
 
-                game.namePlayer1 = "Player 1"
-                game.namePlayer2 = "Player 2"
-                self.namePlayer1Lbl.text = game.namePlayer1
-                self.namePlayer2Lbl.text = game.namePlayer2
-                self.pointsPlayer1Lbl.text = "\(game.pointsPlayer1)"
-                self.pointsPlayer2Lbl.text = "\(game.pointsPlayer2)"
-                self.qttGamesLbl.text = "\(game.qttGames)"
-                self.qttStalemateLbl.text = "\(game.qttStalemate)"
-                (UIApplication.shared.delegate as! AppDelegate).saveContext()
-            }
-            print("\nDados do Game: \(games)\n")
-        } catch {
-            print("\nWe have an error!")
+            // Carregar informações do usuário em var usuario
+            namePlayer1 = UserDefaults.standard.value(forKey: "namePlayer1") as! String
+            namePlayer2 = UserDefaults.standard.value(forKey: "namePlayer2") as! String
+            pointsPlayer1 = UserDefaults.standard.value(forKey: "pointsPlayer1") as! Int
+            pointsPlayer2 = UserDefaults.standard.value(forKey: "pointsPlayer2") as! Int
+            quantityGamesFinished = UserDefaults.standard.value(forKey: "quantityGamesFinished") as! Int
+            quantityStalemate = UserDefaults.standard.value(forKey: "quantityStalemate") as! Int
+
+            namePlayer1Lbl.text = namePlayer1
+            namePlayer2Lbl.text = namePlayer2
+            pointsPlayer1Lbl.text = "\(pointsPlayer1)"
+            pointsPlayer2Lbl.text = "\(pointsPlayer2)"
+            qttGamesLbl.text = "\(quantityGamesFinished)"
+            qttStalemateLbl.text = "\(quantityStalemate)"
+
+        } else {
+            namePlayer1 = "Player 1"
+            namePlayer2 = "Player 2"
+            UserDefaults.standard.set(namePlayer1, forKey: "namePlayer1")
+            UserDefaults.standard.set(namePlayer2, forKey: "namePlayer2")
+
+            namePlayer1Lbl.text = namePlayer1
+            namePlayer2Lbl.text = namePlayer2
+            pointsPlayer1Lbl.text = "\(pointsPlayer1)"
+            pointsPlayer2Lbl.text = "\(pointsPlayer2)"
+            qttGamesLbl.text = "\(quantityGamesFinished)"
+            qttStalemateLbl.text = "\(quantityStalemate)"
         }
     }
 
@@ -233,29 +234,25 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
                 
                 if gameState[combination[0]] != 0 && gameState[combination[0]] == gameState[combination[1]] && gameState[combination[1]] == gameState[combination[2]] {
 
-                    var winnerText = "\(game.namePlayer1!) winner! 😛"
+                    var winnerText = "\(namePlayer1) winner! 😛"
 
                     if gameState[combination[0]] == 2 {
-                        winnerText = "\(game.namePlayer2!) winner! 😜"
+                        winnerText = "\(namePlayer2) winner! 😜"
                         
                         // Set 0 to cliksCount
                         cliksCount = 0
 
                         // More one point to Player 2
                         pointsPlayer2 += 1
-                        game.pointsPlayer2 = Int16(pointsPlayer2)
-                        pointsPlayer2Lbl.text = "\(game.pointsPlayer2)"
-
-                        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+                        UserDefaults.standard.set(pointsPlayer2, forKey: "pointsPlayer2")
+                        pointsPlayer2Lbl.text = "\(pointsPlayer2)"
 
                     } else {
-                        
+
                         // More one point to Player 1
                         pointsPlayer1 += 1
-                        game.pointsPlayer1 = Int16(pointsPlayer1)
-                        pointsPlayer1Lbl.text = "\(game.pointsPlayer1)"
-                        
-                        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+                        UserDefaults.standard.set(pointsPlayer1, forKey: "pointsPlayer1")
+                        pointsPlayer1Lbl.text = "\(pointsPlayer1)"
                     }
 
                     self.refreshBtn.isEnabled = false
@@ -273,10 +270,8 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
 
                     // More one to quantityGamesFinished
                     quantityGamesFinished += 1
-                    game.qttGames = Int16(quantityGamesFinished)
-                    qttGamesLbl.text = "\(game.qttGames)"
-                    
-                    (UIApplication.shared.delegate as! AppDelegate).saveContext()
+                    UserDefaults.standard.set(quantityGamesFinished, forKey: "quantityGamesFinished")
+                    qttGamesLbl.text = "\(quantityGamesFinished)"
                     
                     // Show the label and button
                     gameOverLabel.isHidden = false
@@ -326,16 +321,14 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
                 
                 // More one to quantityStalemate
                 quantityStalemate += 1
-                game.qttStalemate = Int16(quantityStalemate)
-                qttStalemateLbl.text = "\(game.qttStalemate)"
+                UserDefaults.standard.set(quantityStalemate, forKey: "quantityStalemate")
+                qttStalemateLbl.text = "\(quantityStalemate)"
 
                 // More one to quantityGamesFinished
                 quantityGamesFinished += 1
-                game.qttGames = Int16(quantityGamesFinished)
-                qttGamesLbl.text = "\(game.qttGames)"
+                UserDefaults.standard.set(quantityGamesFinished, forKey: "quantityGamesFinished")
+                qttGamesLbl.text = "\(quantityGamesFinished)"
 
-                (UIApplication.shared.delegate as! AppDelegate).saveContext()
-                
                 // Animation in label and button
                 UIView.animate(withDuration: 0.5, animations: { () -> Void in
                     
@@ -356,7 +349,6 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
                         })
                     }
                 }
-                (UIApplication.shared.delegate as! AppDelegate).saveContext()
             }
         }
     }
