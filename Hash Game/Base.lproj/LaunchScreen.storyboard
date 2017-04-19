@@ -21,16 +21,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HASH GAME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVh-vJ-awm">
-                                <rect key="frame" x="27" y="93" width="320" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="4wv-wM-lsZ"/>
-                                    <constraint firstAttribute="height" constant="20" id="ow4-tQ-57G"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="AdK-AH-ESk">
                                 <rect key="frame" x="0.0" y="139" width="375" height="375"/>
                                 <constraints>
@@ -38,11 +28,21 @@
                                     <constraint firstAttribute="width" constant="375" id="a3L-Up-jhf"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HASH GAME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVh-vJ-awm">
+                                <rect key="frame" x="27" y="86" width="320" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="4wv-wM-lsZ"/>
+                                    <constraint firstAttribute="height" constant="45" id="ow4-tQ-57G"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="AdK-AH-ESk" firstAttribute="centerX" secondItem="ppk-cP-dkW" secondAttribute="centerX" id="0X4-6Z-631"/>
-                            <constraint firstItem="nVh-vJ-awm" firstAttribute="centerY" secondItem="ppk-cP-dkW" secondAttribute="centerY" constant="-230.5" id="G2K-LT-C68"/>
+                            <constraint firstItem="nVh-vJ-awm" firstAttribute="centerY" secondItem="ppk-cP-dkW" secondAttribute="centerY" constant="-225" id="G2K-LT-C68"/>
                             <constraint firstItem="AdK-AH-ESk" firstAttribute="leading" secondItem="ppk-cP-dkW" secondAttribute="leading" id="PkB-ka-0p9"/>
                             <constraint firstAttribute="trailing" secondItem="AdK-AH-ESk" secondAttribute="trailing" id="WaE-rP-9oK"/>
                             <constraint firstItem="nVh-vJ-awm" firstAttribute="centerX" secondItem="ppk-cP-dkW" secondAttribute="centerX" id="Yt9-Qq-9vQ"/>
@@ -52,7 +52,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LRQ-RM-Jgt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-644" y="375"/>
+            <point key="canvasLocation" x="-644" y="374.66266866566718"/>
         </scene>
     </scenes>
     <resources>

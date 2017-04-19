@@ -17,12 +17,6 @@ var pointsPlayer2 = 0
 var quantityGamesFinished = 0
 var quantityStalemate = 0
 
-// Guardar todos os dados do game atual
-var game : NSDictionary?
-
-var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-//var game = Game(context: context)
-
 // Color
 let color = UIColor(red: 80/255, green: 160/255, blue: 240/255, alpha: 1)
 let color2 = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
@@ -33,8 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
-        
         return true
     }
     

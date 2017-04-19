@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreData
 
 class HashGameVC: UIViewController, UITextFieldDelegate {
 
@@ -17,7 +16,6 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
     var cliksCount = 0
     var imageButtonPlayer1 = UIImage()
     var imageButtonPlayer2 = UIImage()
-    //var games : [Game] = []
 
     // Combinations possible to winner game
     let correctCombinations = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
@@ -78,7 +76,7 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
 
     func getGames() {
         
-        // Se existe usuário logado/registrado, mas logado
+        // If exists names
         if (UserDefaults.standard.value(forKey: "namePlayer1") != nil) &&
            (UserDefaults.standard.value(forKey: "namePlayer2") != nil) {
 
@@ -96,8 +94,9 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
             pointsPlayer2Lbl.text = "\(pointsPlayer2)"
             qttGamesLbl.text = "\(quantityGamesFinished)"
             qttStalemateLbl.text = "\(quantityStalemate)"
-
-        } else {
+            
+        } // No exists names
+        else {
             namePlayer1 = "Player 1"
             namePlayer2 = "Player 2"
             UserDefaults.standard.set(namePlayer1, forKey: "namePlayer1")
@@ -205,7 +204,7 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
             // User 1 is active
             if activePlayer == 1 {
                 
-                image = imageButtonPlayer1 //UIImage(imageButtonPlayer1)!
+                image = imageButtonPlayer1
                 
                 // Change to active the user 2
                 activePlayer = 2
@@ -218,7 +217,6 @@ class HashGameVC: UIViewController, UITextFieldDelegate {
             else {
                 
                 // Set the image of the position
-                //image = UIImage(named: "2 star.png")!
                 image = imageButtonPlayer2
 
                 // Change to active the user 1

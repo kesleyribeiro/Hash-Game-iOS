@@ -4,7 +4,6 @@
 //
 //  Created by Kesley Ribeiro on 31/Mar/17.
 //  Copyright © 2017 Kesley Ribeiro. All rights reserved.
-
 //
 
 import UIKit
@@ -53,16 +52,13 @@ class ConfigGameVC: UIViewController, UITextFieldDelegate {
         namePlayer1Txt.addTarget(self, action: #selector(ConfigGameVC.textFieldDidChange(_:)), for: .editingChanged)
         namePlayer2Txt.addTarget(self, action: #selector(ConfigGameVC.textFieldDidChange(_:)), for: .editingChanged)
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-    }
 
     // If some information in textfiel was modified
     func textFieldDidChange(_ textField : UITextView) {
-        
+
         // If textfield is empty - inactivate Save button
-        if namePlayer1Txt.text!.isEmpty || namePlayer2Txt.text!.isEmpty && namePlayer1Txt.text!.characters.count < 3 && namePlayer2Txt.text!.characters.count < 3 {
+        if namePlayer1Txt.text!.isEmpty || namePlayer2Txt.text!.isEmpty &&
+            namePlayer1Txt.text!.characters.count < 3 && namePlayer2Txt.text!.characters.count < 3 {
 
             saveBtn.isEnabled = false
             saveBtn.alpha = 0.3
@@ -79,9 +75,11 @@ class ConfigGameVC: UIViewController, UITextFieldDelegate {
         // Remove the keyboard
         self.view.endEditing(false)
         
-        // Add the names
+        // Remove the names
         namePlayer1.removeAll()
         namePlayer2.removeAll()
+
+        // Add the names
         namePlayer1.append(namePlayer1Txt.text!)
         namePlayer2.append(namePlayer2Txt.text!)
 
