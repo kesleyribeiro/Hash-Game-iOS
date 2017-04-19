@@ -1,6 +1,7 @@
 # Hash-Game-iOS
 
-Hash Game or 'Jogo da Velha' version mobile in Swift 3
-Versão mobile do famoso Jogo da Velha (Hash Game em inglês), criado no iOS 10, Swift 3, Core Data, Animation view, buttons and labels. 
-O Tabuleiro e as peças são randômicos, a cada novo jogo elas mudam.
-Veja o vídeo e entenda um pouco mais como ficou o jogo: https://youtu.be/kLNy2QILl6w
+Hash Game or 'Jogo da Velha' mobile version in Swift 3
+
+Mobile version of the famous Hash Game (Jogo da Velha in portuguese), created in iOS 10, Swift 3, UserDefaults, Animation view, buttons and labels.
+The Game is random, a new game and new parts and tray.
+See the video to understand the game: https://youtu.be/kLNy2QILl6w
