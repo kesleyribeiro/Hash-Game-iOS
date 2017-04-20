@@ -14,4 +14,10 @@ The Game is random, a new game and new parts and tray.
 - Play Again (some times)
 - Redefine the numbers (points, quantity of stalemate and quantity of occurred games)
 
+To make download in the App Store Brazil:
+https://itunes.apple.com/br/app/hash-game-jogo-da-velha/id1227999277?l=en&mt=8
+
+To make download in the App Store USA:
+https://itunes.apple.com/us/app/hash-game-jogo-da-velha/id1227999277?mt=8
+
 See the video to understand the game: https://youtu.be/kLNy2QILl6w
