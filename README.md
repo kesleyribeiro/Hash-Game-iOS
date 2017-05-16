@@ -28,20 +28,37 @@ See the video to understand the game:
 Screenshots:
 
 <h2>Image 1</h2><br>
+
 ![alt tag](https://github.com/kesleyribeiro/Hash-Game-iOS/blob/master/Screen%20shot/1.png)
+
+<h2>Image 2</h2><br>
 
 ![alt tag](https://github.com/kesleyribeiro/Hash-Game-iOS/blob/master/Screen%20shot/2.png)
 
+<h2>Image 3</h2><br>
+
 ![alt tag](https://github.com/kesleyribeiro/Hash-Game-iOS/blob/master/Screen%20shot/3.png)
+
+<h2>Image 4</h2><br>
 
 ![alt tag](https://github.com/kesleyribeiro/Hash-Game-iOS/blob/master/Screen%20shot/4.png)
 
+<h2>Image 5</h2><br>
+
 ![alt tag](https://github.com/kesleyribeiro/Hash-Game-iOS/blob/master/Screen%20shot/5.png)
+
+<h2>Image 6</h2><br>
 
 ![alt tag](https://github.com/kesleyribeiro/Hash-Game-iOS/blob/master/Screen%20shot/6.png)
 
+<h2>Image 7</h2><br>
+
 ![alt tag](https://github.com/kesleyribeiro/Hash-Game-iOS/blob/master/Screen%20shot/7.png)
 
+<h2>Image 8</h2><br>
+
 ![alt tag](https://github.com/kesleyribeiro/Hash-Game-iOS/blob/master/Screen%20shot/8.png)
+
+<h2>Image 9</h2><br>
 
 ![alt tag](https://github.com/kesleyribeiro/Hash-Game-iOS/blob/master/Screen%20shot/9.png)
