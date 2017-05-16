@@ -21,3 +21,23 @@ To make download on the App Store USA:
 https://itunes.apple.com/us/app/hash-game-jogo-da-velha/id1227999277?mt=8
 
 See the video to understand the game: https://youtu.be/kLNy2QILl6w
+
+Screenshots:
+
+![alt tag](https://github.com/kesleyribeiro/Hash-Game-iOS/blob/master/Screen%20shot/1.png)
+
+![alt tag](https://github.com/kesleyribeiro/Hash-Game-iOS/blob/master/Screen%20shot/2.png)
+
+![alt tag](https://github.com/kesleyribeiro/Hash-Game-iOS/blob/master/Screen%20shot/3.png)
+
+![alt tag](https://github.com/kesleyribeiro/Hash-Game-iOS/blob/master/Screen%20shot/4.png)
+
+![alt tag](https://github.com/kesleyribeiro/Hash-Game-iOS/blob/master/Screen%20shot/5.png)
+
+![alt tag](https://github.com/kesleyribeiro/Hash-Game-iOS/blob/master/Screen%20shot/6.png)
+
+![alt tag](https://github.com/kesleyribeiro/Hash-Game-iOS/blob/master/Screen%20shot/7.png)
+
+![alt tag](https://github.com/kesleyribeiro/Hash-Game-iOS/blob/master/Screen%20shot/8.png)
+
+![alt tag](https://github.com/kesleyribeiro/Hash-Game-iOS/blob/master/Screen%20shot/9.png)
