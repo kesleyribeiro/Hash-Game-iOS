@@ -27,6 +27,7 @@ See the video to understand the game:
 
 Screenshots:
 
+<h2>Image 1</h2><br>
 ![alt tag](https://github.com/kesleyribeiro/Hash-Game-iOS/blob/master/Screen%20shot/1.png)
 
 ![alt tag](https://github.com/kesleyribeiro/Hash-Game-iOS/blob/master/Screen%20shot/2.png)
