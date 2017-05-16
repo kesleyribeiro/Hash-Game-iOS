@@ -21,7 +21,9 @@ To make download on the App Store USA:
 https://itunes.apple.com/us/app/hash-game-jogo-da-velha/id1227999277?mt=8
 
 See the video to understand the game:
+
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/kLNy2QILl6w/0.jpg)](https://www.youtube.com/watch?v=kLNy2QILl6w)
+
 
 Screenshots:
 
