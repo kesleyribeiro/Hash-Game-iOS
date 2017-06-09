@@ -11,7 +11,7 @@ The Game is random, a new game and new parts and tray.
 - See the points of the players
 - See the quantity of stalemate
 - See the quantity of occurred games
-- Play Again (some times)
+- Play Again (Many times)
 - Redefine the numbers (points, quantity of stalemate and quantity of occurred games)
 
 To make download on the App Store Brazil:
